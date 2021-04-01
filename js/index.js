@@ -165,6 +165,36 @@ function greeting(name = "Stranger") {
 console.log(greeting());
 console.log(greeting('Steve'));
 
+
+// rest parameters "...arrayName" creates an array always has to be the last argument passed to the function.
+
+function sum(a, b, ...values) {
+    let sum = a + b;
+    values.forEach(value => (sum += value))
+    return sum;
+}
+
+console.log(sum(2, 5, 1, 2, 3, 9, 8, 2)); //expectd output 32 sum wil not calculate the sum of all numbers entered no matter how many
+
+// Spread Operator "..." creates a new object containing the properties of the old object 
+
+const userSpread = { name: "John Doe" };
+const cart = {
+    items: [{ name: "shirt", quanitity: 1 }, { name: "book", quanity: 3 }]
+}
+
+const deliveryAddress = {
+    street: "100 Main Street",
+    city: "Miami",
+    state: "FL"
+};
+
+const purchase = {
+    ...userSpread,
+    ...cart,
+    ...deliveryAddress
+};
+
 // Show a message on the first visit only 
 //https://stackoverflow.com/questions/32865390/popup-on-website-load-once-per-session
 //https://stackoverflow.com/questions/24189428/display-a-popup-only-once-per-user
