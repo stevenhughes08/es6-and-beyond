@@ -16,7 +16,7 @@ function sayHowdy(greet, myname, age) {
     sayHi.innerHTML = `${greet}, My name is ${myname} and I am ${age} years old.`;
 }
 
-sayHowdy("Howdy", "Steven", "43");
+sayHowdy("Howdy", "Steven", "33");
 
 function createPerson(name, age, admin) {
     return {
@@ -26,7 +26,7 @@ function createPerson(name, age, admin) {
     };
 }
 
-console.log(createPerson("Steven", 43, true));
+console.log(createPerson("Carlos", 33, true));
 
 // Set default value an override the default value
 function sayGoodMorning(name = "Steven") {
@@ -194,6 +194,89 @@ const purchase = {
     ...cart,
     ...deliveryAddress
 };
+
+console.log(purchase);
+
+
+//Destructuring - unpacking values from arrays and objects
+
+const personDest = {
+    name: "Randolf Weinheimer",
+    age: 26
+};
+
+const { name: memberName, age: memberAge } = personDest;
+//the above is the same as below 
+// const name = person.name;
+// const age = person.age; 
+// it works because the variable and property ave the same name. Synaptic sugar
+
+
+console.log(memberName, memberAge); //this unpacks two variables memberName and memberAge
+
+// Destructuring Arrays
+
+const fruit = ["apple", "bannas", "pear"];
+const [first, second, third] = fruit;
+
+console.log(first, second, third); //first second and third are variable names.  
+
+const pets = ["Colin Robinson", "Ira", "Prudence"];
+const [butthead, goodboy, fussycat] = pets;
+
+console.log(butthead, goodboy, fussycat);
+
+// Swapping variables with destructuring
+
+let [min, max] = [15, 9];
+
+// min should always be the smallest
+
+if (min > max) {
+    [min, max] = [max, min]
+}
+
+//if true 
+console.log(`Min: ${min}`);
+console.log(`Max: ${max}`);
+
+const team = [
+    { name: "Jack Dorsey" },
+    { name: "Randolf Weinhimer" },
+    { name: "Mark Wallace" },
+    { name: "Sean White" }
+];
+
+const [boss, ...employees] = team;
+console.log(boss, employees);
+
+// Setting default values with destructuring
+
+const myEvent = {
+    eventName: "Call with John"
+};
+
+const { eventName, createdAt = new Date() } = myEvent;
+
+console.log(eventName, createdAt);
+
+// Destructuring in function arguments
+
+function fetchDogs({ breed }) {
+    fetch(`https://dog.ceo/api/breed/${breed}/images`)
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error));
+}
+
+const dog2 = {
+    name: 'Max',
+    breed: 'labrador',
+    color: 'brown',
+    age: 8
+};
+
+fetchDogs(dog2);
 
 // Show a message on the first visit only 
 //https://stackoverflow.com/questions/32865390/popup-on-website-load-once-per-session
